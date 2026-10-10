@@ -1,0 +1,32 @@
+{% import '@SyliusAdmin/shared/helper/translations.html.twig' as translations %}
+
+{% set form = hookable_metadata.context.form %}
+
+<div class="tab-pane {% if hookable_metadata.configuration.active|default(false) %}show active{% endif %}" id="tmonier-gpsr-product-safety" role="tabpanel" tabindex="0">
+    {% if form.productSafety is defined %}
+        {% set safety_form = form.productSafety %}
+        {% set manufacturer = safety_form.vars.data.manufacturer|default(null) %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2 class="card-title">{{ 'tmonier_gpsr.ui.product_safety'|trans }}</h2>
+            </div>
+            <div class="card-body">
+                <p class="text-secondary">{{ 'tmonier_gpsr.ui.product_safety_help'|trans }}</p>
+                {% if manufacturer is not null and manufacturer.requiresResponsiblePerson and safety_form.vars.data.responsiblePerson is null and manufacturer.defaultResponsiblePerson is null %}
+                    <div class="alert alert-warning" role="alert" {{ sylius_test_html_attribute('product-responsible-person-warning') }}>
+                        {{ 'tmonier_gpsr.ui.responsible_person_required_warning'|trans }}
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <div class="col-12 col-md-6">{{ form_row(safety_form.manufacturer, sylius_test_form_attribute('gpsr-manufacturer')) }}</div>
+                    <div class="col-12 col-md-6">{{ form_row(safety_form.responsiblePerson, sylius_test_form_attribute('gpsr-responsible-person')) }}</div>
+                    <div class="col-12 col-md-6">{{ form_row(safety_form.typeDesignation, sylius_test_form_attribute('gpsr-type-designation')) }}</div>
+                    <div class="col-12 col-md-6">{{ form_row(safety_form.otherIdentifier, sylius_test_form_attribute('gpsr-other-identifier')) }}</div>
+                </div>
+            </div>
+            <div>
+                {{ translations.default(safety_form.translations, null, {accordion_id: 'tmonier-gpsr-product-safety-translations', accordion_flush: true}) }}
+            </div>
+        </div>
+    {% endif %}
+</div>

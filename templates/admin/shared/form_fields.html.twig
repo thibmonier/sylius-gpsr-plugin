@@ -1,0 +1,9 @@
+{% set form = hookable_metadata.context.form %}
+
+{% for child in form %}
+    {% if not child.rendered and child.vars.name != '_token' %}
+        <div class="col-12 col-md-6">
+            {{ form_row(child, sylius_test_form_attribute(child.vars.name)) }}
+        </div>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,80 @@
+imports:
+    - { resource: "@TmonierSyliusGpsrPlugin/config/config.yaml" }
+    - { resource: "services_test.php" }
+
+twig:
+    paths:
+        '%kernel.project_dir%/../../../tests/TestApplication/templates': ~
+
+# Remove if you do not need to extend entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    TestApplication:
+                        is_bundle: false
+                        type: attribute
+                        dir: '%kernel.project_dir%/../../../tests/TestApplication/src/Entity'
+                        prefix: Tests\Tmonier\SyliusGpsrPlugin
+
+# Demo data: `vendor/bin/console sylius:fixtures:load tmonier_gpsr -n` after the default suite.
+sylius_fixtures:
+    suites:
+        tmonier_gpsr:
+            fixtures:
+                tmonier_gpsr_responsible_person:
+                    priority: 30
+                    options:
+                        custom:
+                            -   code: eu_safety_importer
+                                name: EU Safety Import GmbH
+                                role: importer
+                                street: Friedrichstraße 100
+                                postcode: '10117'
+                                city: Berlin
+                                country_code: DE
+                                email: safety@eu-import.example
+                                phone: '+49 30 1234567'
+                tmonier_gpsr_manufacturer:
+                    priority: 20
+                    options:
+                        custom:
+                            -   code: atelier_lumiere
+                                name: Atelier Lumière SAS
+                                trade_mark: Lumière
+                                street: 12 rue de la Paix
+                                postcode: '75002'
+                                city: Paris
+                                country_code: FR
+                                email: contact@atelier-lumiere.example
+                                website: https://atelier-lumiere.example
+                            -   code: shenzhen_caps
+                                name: Shenzhen Caps Manufacturing Co., Ltd.
+                                street: 88 Keyuan Road
+                                postcode: '518057'
+                                city: Shenzhen
+                                country_code: CN
+                                email: export@shenzhen-caps.example
+                                default_responsible_person: eu_safety_importer
+                tmonier_gpsr_product_safety:
+                    priority: 10
+                    options:
+                        custom:
+                            -   product: Apollo_T_Shirt
+                                manufacturer: atelier_lumiere
+                                type_designation: APOLLO-TS-2026
+                                other_identifier: '3760000000017'
+                                translations:
+                                    en_US:
+                                        warnings: Keep away from fire.
+                                        safety_information: Wash inside out at 30 °C.
+                                    fr_FR:
+                                        warnings: Tenir éloigné du feu.
+                                        safety_information: Laver sur l'envers à 30 °C.
+                            -   product: Adventurous_Aurora_Cap
+                                manufacturer: shenzhen_caps
+                                type_designation: AURORA-CAP
+                                translations:
+                                    en_US:
+                                        warnings: Not suitable for children under 3 years. Small parts.

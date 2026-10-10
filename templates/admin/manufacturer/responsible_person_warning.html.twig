@@ -1,0 +1,9 @@
+{% set manufacturer = hookable_metadata.context.resource|default(null) %}
+
+{% if manufacturer is not null and manufacturer.missingResponsiblePerson %}
+    <div class="container-xl">
+        <div class="alert alert-warning" role="alert" {{ sylius_test_html_attribute('responsible-person-warning') }}>
+            {{ 'tmonier_gpsr.ui.responsible_person_required_warning'|trans }}
+        </div>
+    </div>
+{% endif %}

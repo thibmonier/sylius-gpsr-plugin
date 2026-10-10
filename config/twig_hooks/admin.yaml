@@ -1,0 +1,56 @@
+sylius_twig_hooks:
+    hooks:
+        # Manufacturers and responsible persons: generic CRUD templates, custom form layout.
+        'tmonier_gpsr.admin.manufacturer.update.content':
+            responsible_person_warning:
+                template: '@TmonierSyliusGpsrPlugin/admin/manufacturer/responsible_person_warning.html.twig'
+                priority: 250
+
+        'tmonier_gpsr.admin.manufacturer.create.content.form.sections.general':
+            default:
+                enabled: false
+            fields:
+                template: '@TmonierSyliusGpsrPlugin/admin/shared/form_fields.html.twig'
+                priority: 0
+
+        'tmonier_gpsr.admin.manufacturer.update.content.form.sections.general':
+            default:
+                enabled: false
+            fields:
+                template: '@TmonierSyliusGpsrPlugin/admin/shared/form_fields.html.twig'
+                priority: 0
+
+        'tmonier_gpsr.admin.responsible_person.create.content.form.sections.general':
+            default:
+                enabled: false
+            fields:
+                template: '@TmonierSyliusGpsrPlugin/admin/shared/form_fields.html.twig'
+                priority: 0
+
+        'tmonier_gpsr.admin.responsible_person.update.content.form.sections.general':
+            default:
+                enabled: false
+            fields:
+                template: '@TmonierSyliusGpsrPlugin/admin/shared/form_fields.html.twig'
+                priority: 0
+
+        # Product form: "Product safety" tab.
+        'sylius_admin.product.create.content.form.side_navigation':
+            tmonier_gpsr_product_safety:
+                template: '@TmonierSyliusGpsrPlugin/admin/product/form/side_navigation.html.twig'
+                priority: -100
+
+        'sylius_admin.product.create.content.form.sections':
+            tmonier_gpsr_product_safety:
+                template: '@TmonierSyliusGpsrPlugin/admin/product/form/section.html.twig'
+                priority: -100
+
+        'sylius_admin.product.update.content.form.side_navigation':
+            tmonier_gpsr_product_safety:
+                template: '@TmonierSyliusGpsrPlugin/admin/product/form/side_navigation.html.twig'
+                priority: -100
+
+        'sylius_admin.product.update.content.form.sections':
+            tmonier_gpsr_product_safety:
+                template: '@TmonierSyliusGpsrPlugin/admin/product/form/section.html.twig'
+                priority: -100

@@ -1,0 +1,57 @@
+{% set product = hookable_metadata.context.product %}
+{% set safety = tmonier_gpsr_product_safety(product) %}
+
+{% if safety is not null %}
+    <section class="mt-5 mb-5" {{ sylius_test_html_attribute('product-safety') }}>
+        <h2 class="h4 mb-4">{{ 'tmonier_gpsr.ui.product_safety'|trans }}</h2>
+
+        <div class="row">
+            {% if safety.manufacturer is not null %}
+                <div class="col-12 col-md-6 mb-4" {{ sylius_test_html_attribute('product-safety-manufacturer') }}>
+                    <h3 class="h6 text-uppercase text-body-tertiary">{{ 'tmonier_gpsr.ui.manufacturer'|trans }}</h3>
+                    {% include '@TmonierSyliusGpsrPlugin/shop/product/show/_operator.html.twig' with { operator: safety.manufacturer, trade_mark: safety.manufacturer.tradeMark, website: safety.manufacturer.website } %}
+                </div>
+            {% endif %}
+
+            {% if safety.responsiblePerson is not null %}
+                <div class="col-12 col-md-6 mb-4" {{ sylius_test_html_attribute('product-safety-responsible-person') }}>
+                    <h3 class="h6 text-uppercase text-body-tertiary">
+                        {{ 'tmonier_gpsr.ui.responsible_person_in_eu'|trans }}
+                        <span class="fw-normal text-lowercase">({{ ('tmonier_gpsr.ui.role.' ~ safety.responsiblePerson.role)|trans }})</span>
+                    </h3>
+                    {% include '@TmonierSyliusGpsrPlugin/shop/product/show/_operator.html.twig' with { operator: safety.responsiblePerson, phone: safety.responsiblePerson.phone } %}
+                </div>
+            {% endif %}
+
+            {% if safety.typeDesignation is not null or safety.otherIdentifier is not null %}
+                <div class="col-12 mb-4" {{ sylius_test_html_attribute('product-safety-identification') }}>
+                    <h3 class="h6 text-uppercase text-body-tertiary">{{ 'tmonier_gpsr.ui.product_identification'|trans }}</h3>
+                    <dl class="row mb-0">
+                        {% if safety.typeDesignation is not null %}
+                            <dt class="col-sm-4">{{ 'tmonier_gpsr.ui.type_designation'|trans }}</dt>
+                            <dd class="col-sm-8" {{ sylius_test_html_attribute('product-safety-type') }}>{{ safety.typeDesignation }}</dd>
+                        {% endif %}
+                        {% if safety.otherIdentifier is not null %}
+                            <dt class="col-sm-4">{{ 'tmonier_gpsr.ui.other_identifier'|trans }}</dt>
+                            <dd class="col-sm-8" {{ sylius_test_html_attribute('product-safety-identifier') }}>{{ safety.otherIdentifier }}</dd>
+                        {% endif %}
+                    </dl>
+                </div>
+            {% endif %}
+
+            {% if safety.warnings is not null %}
+                <div class="col-12 mb-4" {{ sylius_test_html_attribute('product-safety-warnings') }}>
+                    <h3 class="h6 text-uppercase text-body-tertiary">{{ 'tmonier_gpsr.ui.warnings'|trans }}</h3>
+                    <div>{{ safety.warnings|nl2br }}</div>
+                </div>
+            {% endif %}
+
+            {% if safety.safetyInformation is not null %}
+                <div class="col-12 mb-4" {{ sylius_test_html_attribute('product-safety-information') }}>
+                    <h3 class="h6 text-uppercase text-body-tertiary">{{ 'tmonier_gpsr.ui.safety_information'|trans }}</h3>
+                    <div>{{ safety.safetyInformation|nl2br }}</div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endif %}

@@ -1,0 +1,109 @@
+sylius_grid:
+    grids:
+        tmonier_gpsr_admin_manufacturer:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%tmonier_gpsr.model.manufacturer.class%"
+            sorting:
+                name: asc
+            fields:
+                code:
+                    type: string
+                    label: sylius.ui.code
+                    sortable: ~
+                name:
+                    type: string
+                    label: sylius.ui.name
+                    sortable: ~
+                countryCode:
+                    type: twig
+                    label: sylius.ui.country
+                    path: .
+                    sortable: countryCode
+                    options:
+                        template: "@TmonierSyliusGpsrPlugin/admin/grid/field/country.html.twig"
+                email:
+                    type: string
+                    label: sylius.ui.email
+                defaultResponsiblePerson:
+                    type: twig
+                    label: tmonier_gpsr.ui.responsible_person
+                    path: .
+                    options:
+                        template: "@TmonierSyliusGpsrPlugin/admin/grid/field/manufacturer_responsible_person.html.twig"
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [code, name, tradeMark, email]
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete
+
+        tmonier_gpsr_admin_responsible_person:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%tmonier_gpsr.model.responsible_person.class%"
+            sorting:
+                name: asc
+            fields:
+                code:
+                    type: string
+                    label: sylius.ui.code
+                    sortable: ~
+                name:
+                    type: string
+                    label: sylius.ui.name
+                    sortable: ~
+                role:
+                    type: twig
+                    label: tmonier_gpsr.form.responsible_person.role
+                    sortable: ~
+                    options:
+                        template: "@TmonierSyliusGpsrPlugin/admin/grid/field/role.html.twig"
+                countryCode:
+                    type: twig
+                    label: sylius.ui.country
+                    path: .
+                    sortable: countryCode
+                    options:
+                        template: "@TmonierSyliusGpsrPlugin/admin/grid/field/country.html.twig"
+                email:
+                    type: string
+                    label: sylius.ui.email
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [code, name, email]
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete
+
+        sylius_admin_product:
+            filters:
+                tmonier_gpsr_data_missing:
+                    type: tmonier_gpsr_data_missing
+                    label: tmonier_gpsr.ui.gpsr_data_missing

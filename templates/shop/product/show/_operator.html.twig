@@ -1,0 +1,10 @@
+<address class="mb-0">
+    <strong>{{ operator.name }}</strong>
+    {% if trade_mark|default(null) %}<br>{{ 'tmonier_gpsr.ui.trade_mark'|trans }}: {{ trade_mark }}{% endif %}
+    <br>{{ operator.street }}
+    <br>{{ operator.postcode }} {{ operator.city }}
+    <br>{{ operator.countryCode|sylius_country_name }}
+    <br><a href="mailto:{{ operator.email }}" {{ sylius_test_html_attribute('email') }}>{{ operator.email }}</a>
+    {% if phone|default(null) %}<br>{{ phone }}{% endif %}
+    {% if website|default(null) %}<br><a href="{{ website }}" rel="noopener nofollow" target="_blank">{{ website }}</a>{% endif %}
+</address>

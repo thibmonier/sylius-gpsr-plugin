@@ -1,0 +1,6 @@
+tmonier_gpsr:
+    code:
+        unique: Ten kod jest już używany.
+        regex: Kod może zawierać tylko litery, cyfry, myślniki i podkreślenia.
+    responsible_person:
+        established_in_eu: Osoba odpowiedzialna musi mieć siedzibę w Unii Europejskiej.

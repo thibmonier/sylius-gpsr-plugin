@@ -1,0 +1,11 @@
+tmonier_gpsr:
+    manufacturer:
+        create: Der Hersteller wurde erfolgreich erstellt.
+        update: Der Hersteller wurde erfolgreich aktualisiert.
+        delete: Der Hersteller wurde erfolgreich gelöscht.
+        bulk_delete: Die Hersteller wurden erfolgreich gelöscht.
+    responsible_person:
+        create: Die verantwortliche Person wurde erfolgreich erstellt.
+        update: Die verantwortliche Person wurde erfolgreich aktualisiert.
+        delete: Die verantwortliche Person wurde erfolgreich gelöscht.
+        bulk_delete: Die verantwortlichen Personen wurden erfolgreich gelöscht.

@@ -1,0 +1,9 @@
+{% set code = data.countryCode %}
+{% if code %}
+    {{ code|sylius_country_name }}
+    {% if data.establishedInEu %}
+        <span class="badge bg-blue-lt">{{ 'tmonier_gpsr.ui.eu'|trans }}</span>
+    {% else %}
+        <span class="badge bg-orange-lt">{{ 'tmonier_gpsr.ui.non_eu'|trans }}</span>
+    {% endif %}
+{% endif %}

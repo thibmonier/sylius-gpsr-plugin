@@ -1,0 +1,8 @@
+{% set person = data.defaultResponsiblePerson %}
+{% if person is not null %}
+    {{ person.name }}
+{% elseif data.missingResponsiblePerson %}
+    <span class="badge bg-red-lt" {{ sylius_test_html_attribute('responsible-person-missing') }}>{{ 'tmonier_gpsr.ui.responsible_person_missing'|trans }}</span>
+{% else %}
+    <span class="text-secondary">{{ 'tmonier_gpsr.ui.not_required'|trans }}</span>
+{% endif %}

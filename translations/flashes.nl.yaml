@@ -1,0 +1,11 @@
+tmonier_gpsr:
+    manufacturer:
+        create: De fabrikant is succesvol aangemaakt.
+        update: De fabrikant is succesvol bijgewerkt.
+        delete: De fabrikant is succesvol verwijderd.
+        bulk_delete: De fabrikanten zijn succesvol verwijderd.
+    responsible_person:
+        create: De verantwoordelijke persoon is succesvol aangemaakt.
+        update: De verantwoordelijke persoon is succesvol bijgewerkt.
+        delete: De verantwoordelijke persoon is succesvol verwijderd.
+        bulk_delete: De verantwoordelijke personen zijn succesvol verwijderd.

@@ -1,0 +1,11 @@
+tmonier_gpsr:
+    manufacturer:
+        create: Producent został utworzony.
+        update: Producent został zaktualizowany.
+        delete: Producent został usunięty.
+        bulk_delete: Producenci zostali usunięci.
+    responsible_person:
+        create: Osoba odpowiedzialna została utworzona.
+        update: Osoba odpowiedzialna została zaktualizowana.
+        delete: Osoba odpowiedzialna została usunięta.
+        bulk_delete: Osoby odpowiedzialne zostały usunięte.

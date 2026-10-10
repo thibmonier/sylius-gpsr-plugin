@@ -1,0 +1,8 @@
+# Import this file from your application's config/routes:
+#
+# tmonier_sylius_gpsr:
+#     resource: "@TmonierSyliusGpsrPlugin/config/routes.yaml"
+
+tmonier_gpsr_admin:
+    resource: "@TmonierSyliusGpsrPlugin/config/routes/admin.yaml"
+    prefix: '/%sylius_admin.path_name%'

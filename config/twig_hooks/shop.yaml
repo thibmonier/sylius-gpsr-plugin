@@ -1,0 +1,8 @@
+sylius_twig_hooks:
+    hooks:
+        # Art. 19 GPSR: shown on the product page itself, below the details/attributes/reviews
+        # accordion, without any click.
+        'sylius_shop.product.show.content.info.overview':
+            tmonier_gpsr_product_safety:
+                template: '@TmonierSyliusGpsrPlugin/shop/product/show/product_safety.html.twig'
+                priority: -100

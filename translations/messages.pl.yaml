@@ -1,0 +1,55 @@
+tmonier_gpsr:
+    ui:
+        manufacturer: Producent
+        manufacturers: Producenci
+        responsible_person: Osoba odpowiedzialna
+        responsible_persons: Osoby odpowiedzialne
+        # Sylius pluralises the resource name "responsible_person" as "responsible_people" (page titles, breadcrumbs).
+        responsible_people: Osoby odpowiedzialne
+        responsible_person_in_eu: Osoba odpowiedzialna w UE
+        product_safety: Bezpieczeństwo produktu
+        product_safety_help: Informacje wyświetlane na stronie produktu zgodnie z unijnym rozporządzeniem w sprawie ogólnego bezpieczeństwa produktów (art. 19 GPSR).
+        product_identification: Identyfikacja produktu
+        type_designation: Typ / model
+        other_identifier: Identyfikator
+        warnings: Ostrzeżenia
+        safety_information: Informacje dotyczące bezpieczeństwa
+        trade_mark: Znak towarowy
+        gpsr_data_missing: Brak danych GPSR
+        eu: UE
+        non_eu: Poza UE
+        none: Brak
+        not_required: Niewymagana
+        responsible_person_missing: Brak
+        responsible_person_required_warning: Ten producent ma siedzibę poza UE. Produkty wprowadzane do obrotu w UE wymagają osoby odpowiedzialnej z siedzibą w UE (importer, upoważniony przedstawiciel lub dostawca usług realizacji zamówień). Ustaw domyślną osobę odpowiedzialną lub osobną dla każdego produktu.
+        role:
+            importer: Importer
+            authorised_representative: Upoważniony przedstawiciel
+            fulfilment_service_provider: Dostawca usług realizacji zamówień
+    form:
+        email: Adres elektroniczny (e-mail)
+        email_help: Musi umożliwiać kontakt konsumentom i organom.
+        website: Strona internetowa
+        manufacturer:
+            name: Nazwa lub zarejestrowana nazwa handlowa
+            name_help: W takiej postaci, w jakiej ma się pojawić na stronie produktu.
+            trade_mark: Zarejestrowany znak towarowy
+            default_responsible_person: Domyślna osoba odpowiedzialna
+            default_responsible_person_help: Wymagana, gdy producent ma siedzibę poza UE.
+        responsible_person:
+            name: Nazwa lub zarejestrowana nazwa handlowa
+            role: Rola
+            select_role: Wybierz rolę
+        product_safety:
+            manufacturer: Producent
+            responsible_person: Osoba odpowiedzialna
+            responsible_person_help: Pozostaw puste, aby użyć domyślnej osoby odpowiedzialnej producenta.
+            manufacturer_default: Domyślna producenta
+            type_designation: Typ / model
+            type_designation_help: Typ, model lub oznaczenie umożliwiające identyfikację produktu.
+            other_identifier: Inny identyfikator
+            other_identifier_help: Na przykład GTIN/EAN.
+            warnings: Ostrzeżenia
+            warnings_help: Ostrzeżenia wyświetlane konsumentom w tym języku.
+            safety_information: Informacje dotyczące bezpieczeństwa
+            safety_information_help: Informacje dotyczące bezpieczeństwa wyświetlane w tym języku.

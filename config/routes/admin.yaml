@@ -1,0 +1,28 @@
+tmonier_gpsr_admin_manufacturer:
+    resource: |
+        alias: tmonier_gpsr.manufacturer
+        section: admin
+        templates: "@SyliusAdmin\\shared\\crud"
+        except: ['show']
+        redirect: update
+        grid: tmonier_gpsr_admin_manufacturer
+        permission: true
+        vars:
+            all:
+                hook_prefix: tmonier_gpsr.admin.manufacturer
+    type: sylius.resource
+
+tmonier_gpsr_admin_responsible_person:
+    resource: |
+        alias: tmonier_gpsr.responsible_person
+        section: admin
+        path: responsible-persons
+        templates: "@SyliusAdmin\\shared\\crud"
+        except: ['show']
+        redirect: update
+        grid: tmonier_gpsr_admin_responsible_person
+        permission: true
+        vars:
+            all:
+                hook_prefix: tmonier_gpsr.admin.responsible_person
+    type: sylius.resource

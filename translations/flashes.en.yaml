@@ -1,0 +1,11 @@
+tmonier_gpsr:
+    manufacturer:
+        create: Manufacturer has been successfully created.
+        update: Manufacturer has been successfully updated.
+        delete: Manufacturer has been successfully deleted.
+        bulk_delete: Manufacturers have been successfully deleted.
+    responsible_person:
+        create: Responsible person has been successfully created.
+        update: Responsible person has been successfully updated.
+        delete: Responsible person has been successfully deleted.
+        bulk_delete: Responsible persons have been successfully deleted.

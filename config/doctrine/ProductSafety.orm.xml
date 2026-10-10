@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <mapped-superclass name="Tmonier\SyliusGpsrPlugin\Entity\ProductSafety" table="tmonier_gpsr_product_safety">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="typeDesignation" column="type_designation" type="string" length="255" nullable="true" />
+        <field name="otherIdentifier" column="other_identifier" type="string" length="255" nullable="true" />
+
+        <one-to-one field="product" target-entity="Sylius\Component\Product\Model\ProductInterface">
+            <join-column name="product_id" referenced-column-name="id" unique="true" nullable="false" on-delete="CASCADE" />
+        </one-to-one>
+
+        <many-to-one field="manufacturer" target-entity="Tmonier\SyliusGpsrPlugin\Entity\ManufacturerInterface">
+            <join-column name="manufacturer_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
+        </many-to-one>
+
+        <many-to-one field="responsiblePerson" target-entity="Tmonier\SyliusGpsrPlugin\Entity\ResponsiblePersonInterface">
+            <join-column name="responsible_person_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
+        </many-to-one>
+    </mapped-superclass>
+
+</doctrine-mapping>

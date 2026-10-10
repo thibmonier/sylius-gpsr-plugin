@@ -1,5 +1,8 @@
 # Sylius GPSR Plugin
 
+[![Build](https://github.com/thibmonier/sylius-gpsr-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thibmonier/sylius-gpsr-plugin/actions/workflows/build.yaml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **EU General Product Safety Regulation (GPSR) information on your Sylius 2 product pages.**
 
 Since **13 December 2024**, every online shop selling consumer products in the European Union

@@ -129,7 +129,7 @@ final class AdminGpsrTest extends WebTestCase
         $product = $this->findProduct('Lunar_Echo_T_Shirt');
         self::assertNull($this->findProductSafety($product));
 
-        $this->client->request('GET', sprintf('/admin/products/%d/edit', $product->getId()));
+        $this->client->request('GET', $this->productEditUrl($product));
         self::assertResponseIsSuccessful();
         self::assertSelectorExists('[data-test-side-navigation-tab="product-safety"]');
 
@@ -153,7 +153,7 @@ final class AdminGpsrTest extends WebTestCase
         self::assertFalse($productSafety->getTranslations()->containsKey('de_DE'), 'Empty translations are not stored.');
 
         // Editing again updates the same record.
-        $crawler = $this->client->request('GET', sprintf('/admin/products/%d/edit', $product->getId()));
+        $crawler = $this->client->request('GET', $this->productEditUrl($product));
         self::assertSame('LUNAR-ECHO', $crawler->filter('[name="sylius_admin_product[productSafety][typeDesignation]"]')->attr('value'));
         $this->client->submitForm('Update', [
             'sylius_admin_product[productSafety][typeDesignation]' => 'LUNAR-ECHO-2',
@@ -170,7 +170,7 @@ final class AdminGpsrTest extends WebTestCase
     {
         $product = $this->findProduct('Nebula_Dream_T_Shirt');
 
-        $this->client->request('GET', sprintf('/admin/products/%d/edit', $product->getId()));
+        $this->client->request('GET', $this->productEditUrl($product));
         $this->client->submitForm('Update');
         self::assertResponseRedirects();
 
@@ -190,7 +190,7 @@ final class AdminGpsrTest extends WebTestCase
             '/admin/responsible-persons/',
             '/admin/responsible-persons/new',
             sprintf('/admin/responsible-persons/%s/edit', $this->idOf($person)),
-            sprintf('/admin/products/%d/edit', $product->getId()),
+            $this->productEditUrl($product),
             '/admin/products/',
         ] as $url) {
             $crawler = $this->client->request('GET', $url);
@@ -203,7 +203,7 @@ final class AdminGpsrTest extends WebTestCase
     {
         $product = $this->findProduct('Nebula_Dream_T_Shirt');
 
-        $this->client->request('GET', sprintf('/admin/products/%d/edit', $product->getId()));
+        $this->client->request('GET', $this->productEditUrl($product));
         $this->client->submitForm('Update', [
             'sylius_admin_product[productSafety][typeDesignation]' => str_repeat('x', 256),
         ]);
@@ -246,11 +246,11 @@ final class AdminGpsrTest extends WebTestCase
         $withResponsiblePerson = $this->createManufacturer('test_cn_ok', 'CN', $responsiblePerson);
         $withoutResponsiblePerson = $this->createManufacturer('test_cn_ko', 'CN');
 
-        $this->client->request('GET', sprintf('/admin/products/%d/edit', $complete->getId()));
+        $this->client->request('GET', $this->productEditUrl($complete));
         $this->client->submitForm('Update', [
             'sylius_admin_product[productSafety][manufacturer]' => $this->idOf($withResponsiblePerson),
         ]);
-        $this->client->request('GET', sprintf('/admin/products/%d/edit', $incomplete->getId()));
+        $this->client->request('GET', $this->productEditUrl($incomplete));
         $this->client->submitForm('Update', [
             'sylius_admin_product[productSafety][manufacturer]' => $this->idOf($withoutResponsiblePerson),
         ]);
@@ -267,5 +267,13 @@ final class AdminGpsrTest extends WebTestCase
         self::assertStringContainsString('Solar_Echo_T_Shirt', $table);
         self::assertStringNotContainsString('Ocean_Wave_Jeans', $table);
         self::assertStringNotContainsString('Nebula_Dream_T_Shirt', $table);
+    }
+
+    private function productEditUrl(ProductInterface $product): string
+    {
+        $id = $product->getId();
+        self::assertIsInt($id);
+
+        return sprintf('/admin/products/%d/edit', $id);
     }
 }

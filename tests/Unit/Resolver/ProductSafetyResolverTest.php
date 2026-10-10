@@ -75,7 +75,6 @@ final class ProductSafetyResolverTest extends TestCase
 
         $this->productSafety->setResponsiblePerson($this->responsiblePerson('override'));
         $view = $this->resolve();
-        self::assertNotNull($view);
         self::assertSame('override', $view->responsiblePerson?->getCode());
         self::assertFalse($view->isResponsiblePersonMissing());
     }

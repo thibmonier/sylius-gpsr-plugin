@@ -33,6 +33,12 @@ Also included:
 - **Customisable** through Twig Hooks and resource class overrides; MySQL, MariaDB and
   PostgreSQL support.
 
+## Screenshots
+
+![Product safety block on the product page](docs/images/shop-product-safety.png)
+
+![Product safety tab in the admin product form](docs/images/admin-product-safety.png)
+
 ## Requirements
 
 | | Version |

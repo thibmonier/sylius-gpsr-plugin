@@ -58,6 +58,6 @@ class Manufacturer implements ManufacturerInterface, \Stringable
 
     public function isMissingResponsiblePerson(): bool
     {
-        return $this->requiresResponsiblePerson() && null === $this->defaultResponsiblePerson;
+        return $this->requiresResponsiblePerson() && !$this->defaultResponsiblePerson instanceof \Tmonier\SyliusGpsrPlugin\Entity\ResponsiblePersonInterface;
     }
 }

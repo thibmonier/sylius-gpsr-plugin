@@ -17,13 +17,13 @@ use Tmonier\SyliusGpsrPlugin\Model\EuMemberStates;
  *
  * Only works with the Doctrine ORM grid driver; other data sources are left untouched.
  */
-final class GpsrDataMissingFilter implements FilterInterface
+final readonly class GpsrDataMissingFilter implements FilterInterface
 {
     public const TYPE = 'tmonier_gpsr_data_missing';
 
     private const ALIAS = 'tmonier_gpsr_ps';
 
-    public function __construct(private readonly string $productSafetyClass)
+    public function __construct(private string $productSafetyClass)
     {
     }
 

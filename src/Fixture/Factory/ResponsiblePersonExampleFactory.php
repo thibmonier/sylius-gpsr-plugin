@@ -16,9 +16,9 @@ use Tmonier\SyliusGpsrPlugin\Model\EuMemberStates;
 
 final class ResponsiblePersonExampleFactory extends AbstractExampleFactory
 {
-    private Generator $faker;
+    private readonly Generator $faker;
 
-    private OptionsResolver $optionsResolver;
+    private readonly OptionsResolver $optionsResolver;
 
     /** @param FactoryInterface<ResponsiblePersonInterface> $responsiblePersonFactory */
     public function __construct(private readonly FactoryInterface $responsiblePersonFactory)

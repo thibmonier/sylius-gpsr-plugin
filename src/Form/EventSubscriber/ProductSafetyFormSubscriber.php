@@ -19,7 +19,7 @@ use Tmonier\SyliusGpsrPlugin\Repository\ProductSafetyRepositoryInterface;
  * untouched, the ProductSafety (owning side of the relation) is loaded before the form is
  * populated and persisted once the product form is valid. The flush is left to the controller.
  */
-final class ProductSafetyFormSubscriber implements EventSubscriberInterface
+final readonly class ProductSafetyFormSubscriber implements EventSubscriberInterface
 {
     public const FIELD = 'productSafety';
 
@@ -28,10 +28,10 @@ final class ProductSafetyFormSubscriber implements EventSubscriberInterface
      * @param class-string $formType
      */
     public function __construct(
-        private readonly ProductSafetyRepositoryInterface $productSafetyRepository,
-        private readonly FactoryInterface $productSafetyFactory,
-        private readonly ObjectManager $productSafetyManager,
-        private readonly string $formType,
+        private ProductSafetyRepositoryInterface $productSafetyRepository,
+        private FactoryInterface $productSafetyFactory,
+        private ObjectManager $productSafetyManager,
+        private string $formType,
     ) {
     }
 
@@ -86,7 +86,7 @@ final class ProductSafetyFormSubscriber implements EventSubscriberInterface
     private function findOrCreate(ProductInterface $product): ProductSafetyInterface
     {
         $productSafety = $this->productSafetyRepository->findOneByProduct($product);
-        if (null === $productSafety) {
+        if (!$productSafety instanceof \Tmonier\SyliusGpsrPlugin\Entity\ProductSafetyInterface) {
             $productSafety = $this->productSafetyFactory->createNew();
             $productSafety->setProduct($product);
         }

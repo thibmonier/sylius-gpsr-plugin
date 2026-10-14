@@ -78,7 +78,7 @@ class ProductSafety implements ProductSafetyInterface
 
     public function setTypeDesignation(?string $typeDesignation): void
     {
-        $this->typeDesignation = self::normalize($typeDesignation);
+        $this->typeDesignation = $this->normalize($typeDesignation);
     }
 
     public function getOtherIdentifier(): ?string
@@ -88,7 +88,7 @@ class ProductSafety implements ProductSafetyInterface
 
     public function setOtherIdentifier(?string $otherIdentifier): void
     {
-        $this->otherIdentifier = self::normalize($otherIdentifier);
+        $this->otherIdentifier = $this->normalize($otherIdentifier);
     }
 
     public function getWarnings(): ?string
@@ -123,8 +123,8 @@ class ProductSafety implements ProductSafetyInterface
     public function isEmpty(): bool
     {
         if (
-            null !== $this->manufacturer ||
-            null !== $this->responsiblePerson ||
+            $this->manufacturer instanceof \Tmonier\SyliusGpsrPlugin\Entity\ManufacturerInterface ||
+            $this->responsiblePerson instanceof \Tmonier\SyliusGpsrPlugin\Entity\ResponsiblePersonInterface ||
             null !== $this->typeDesignation ||
             null !== $this->otherIdentifier
         ) {
@@ -145,7 +145,7 @@ class ProductSafety implements ProductSafetyInterface
         return new ProductSafetyTranslation();
     }
 
-    private static function normalize(?string $value): ?string
+    private function normalize(?string $value): ?string
     {
         $value = null === $value ? null : trim($value);
 

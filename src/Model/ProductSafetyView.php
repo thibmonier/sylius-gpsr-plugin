@@ -10,30 +10,30 @@ use Tmonier\SyliusGpsrPlugin\Entity\ResponsiblePersonInterface;
 /**
  * Read model of the information an online offer has to display (Art. 19 GPSR).
  */
-final class ProductSafetyView
+final readonly class ProductSafetyView
 {
     public function __construct(
-        public readonly ?ManufacturerInterface $manufacturer,
-        public readonly ?ResponsiblePersonInterface $responsiblePerson,
-        public readonly bool $responsiblePersonRequired,
-        public readonly ?string $typeDesignation,
-        public readonly ?string $otherIdentifier,
-        public readonly ?string $warnings,
-        public readonly ?string $safetyInformation,
+        public ?ManufacturerInterface $manufacturer,
+        public ?ResponsiblePersonInterface $responsiblePerson,
+        public bool $responsiblePersonRequired,
+        public ?string $typeDesignation,
+        public ?string $otherIdentifier,
+        public ?string $warnings,
+        public ?string $safetyInformation,
     ) {
     }
 
     /** A manufacturer outside the Union is set but no responsible person could be resolved. */
     public function isResponsiblePersonMissing(): bool
     {
-        return $this->responsiblePersonRequired && null === $this->responsiblePerson;
+        return $this->responsiblePersonRequired && !$this->responsiblePerson instanceof \Tmonier\SyliusGpsrPlugin\Entity\ResponsiblePersonInterface;
     }
 
     public function isEmpty(): bool
     {
         return
-            null === $this->manufacturer &&
-            null === $this->responsiblePerson &&
+            !$this->manufacturer instanceof \Tmonier\SyliusGpsrPlugin\Entity\ManufacturerInterface &&
+            !$this->responsiblePerson instanceof \Tmonier\SyliusGpsrPlugin\Entity\ResponsiblePersonInterface &&
             null === $this->typeDesignation &&
             null === $this->otherIdentifier &&
             null === $this->warnings &&

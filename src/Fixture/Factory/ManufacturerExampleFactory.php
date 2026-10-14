@@ -17,9 +17,9 @@ use Tmonier\SyliusGpsrPlugin\Entity\ResponsiblePersonInterface;
 
 final class ManufacturerExampleFactory extends AbstractExampleFactory
 {
-    private Generator $faker;
+    private readonly Generator $faker;
 
-    private OptionsResolver $optionsResolver;
+    private readonly OptionsResolver $optionsResolver;
 
     /**
      * @param FactoryInterface<ManufacturerInterface> $manufacturerFactory

@@ -27,7 +27,7 @@ class ProductSafetyTranslation extends AbstractTranslation implements ProductSaf
 
     public function setWarnings(?string $warnings): void
     {
-        $this->warnings = self::normalize($warnings);
+        $this->warnings = $this->normalize($warnings);
     }
 
     public function getSafetyInformation(): ?string
@@ -37,7 +37,7 @@ class ProductSafetyTranslation extends AbstractTranslation implements ProductSaf
 
     public function setSafetyInformation(?string $safetyInformation): void
     {
-        $this->safetyInformation = self::normalize($safetyInformation);
+        $this->safetyInformation = $this->normalize($safetyInformation);
     }
 
     public function isEmpty(): bool
@@ -45,7 +45,7 @@ class ProductSafetyTranslation extends AbstractTranslation implements ProductSaf
         return null === $this->warnings && null === $this->safetyInformation;
     }
 
-    private static function normalize(?string $value): ?string
+    private function normalize(?string $value): ?string
     {
         $value = null === $value ? null : trim($value);
 

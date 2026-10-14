@@ -15,7 +15,7 @@ use Tmonier\SyliusGpsrPlugin\Entity\ResponsiblePersonInterface;
 
 final class ProductSafetyExampleFactory extends AbstractExampleFactory
 {
-    private OptionsResolver $optionsResolver;
+    private readonly OptionsResolver $optionsResolver;
 
     /**
      * @param FactoryInterface<ProductSafetyInterface> $productSafetyFactory

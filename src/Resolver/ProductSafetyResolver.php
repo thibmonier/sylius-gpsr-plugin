@@ -13,19 +13,19 @@ use Tmonier\SyliusGpsrPlugin\Entity\ProductSafetyTranslationInterface;
 use Tmonier\SyliusGpsrPlugin\Model\ProductSafetyView;
 use Tmonier\SyliusGpsrPlugin\Repository\ProductSafetyRepositoryInterface;
 
-final class ProductSafetyResolver implements ProductSafetyResolverInterface
+final readonly class ProductSafetyResolver implements ProductSafetyResolverInterface
 {
     public function __construct(
-        private readonly ProductSafetyRepositoryInterface $productSafetyRepository,
-        private readonly LocaleContextInterface $localeContext,
-        private readonly TranslationLocaleProviderInterface $translationLocaleProvider,
+        private ProductSafetyRepositoryInterface $productSafetyRepository,
+        private LocaleContextInterface $localeContext,
+        private TranslationLocaleProviderInterface $translationLocaleProvider,
     ) {
     }
 
     public function resolve(ProductInterface $product, ?string $localeCode = null): ?ProductSafetyView
     {
         $productSafety = $this->productSafetyRepository->findOneByProduct($product);
-        if (null === $productSafety) {
+        if (!$productSafety instanceof \Tmonier\SyliusGpsrPlugin\Entity\ProductSafetyInterface) {
             return null;
         }
 
@@ -37,7 +37,7 @@ final class ProductSafetyResolver implements ProductSafetyResolverInterface
         $view = new ProductSafetyView(
             $manufacturer,
             $productSafety->getResponsiblePerson() ?? $manufacturer?->getDefaultResponsiblePerson(),
-            null !== $manufacturer && $manufacturer->requiresResponsiblePerson(),
+            $manufacturer instanceof \Tmonier\SyliusGpsrPlugin\Entity\ManufacturerInterface && $manufacturer->requiresResponsiblePerson(),
             $productSafety->getTypeDesignation(),
             $productSafety->getOtherIdentifier(),
             $this->translate($productSafety, $localeCode, $fallbackLocaleCode, static fn (ProductSafetyTranslationInterface $translation): ?string => $translation->getWarnings()),

@@ -23,7 +23,7 @@ final class GpsrDataMissingFilterTest extends TestCase
         $filter = new GpsrDataMissingFilter('App\\Entity\\ProductSafety');
         $filter->apply($dataSource, 'gpsr_missing', BooleanFilter::TRUE, []);
 
-        self::assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 
     public function testItIgnoresInvalidData(): void
@@ -33,7 +33,7 @@ final class GpsrDataMissingFilterTest extends TestCase
         $filter = new GpsrDataMissingFilter('App\\Entity\\ProductSafety');
         $filter->apply($dataSource, 'gpsr_missing', 'invalid_value', []);
 
-        self::assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 
     public function testItIgnoresNullData(): void
@@ -43,6 +43,6 @@ final class GpsrDataMissingFilterTest extends TestCase
         $filter = new GpsrDataMissingFilter('App\\Entity\\ProductSafety');
         $filter->apply($dataSource, 'gpsr_missing', null, []);
 
-        self::assertTrue(true);
+        $this->addToAssertionCount(1);
     }
 }
